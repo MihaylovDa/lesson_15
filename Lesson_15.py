@@ -2,37 +2,37 @@ import tkinter as tk
 import logging
 import argparse
 
-# Настройка логирования
+# РќР°СЃС‚СЂРѕР№РєР° Р»РѕРіРёСЂРѕРІР°РЅРёСЏ
 logging.basicConfig(filename='calc.log', level=logging.INFO)
 
-# Создание окна
+# РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
 root = tk.Tk()
-root.title("Калькулятор")
+root.title("РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ")
 
-# Создание поля для ввода
+# РЎРѕР·РґР°РЅРёРµ РїРѕР»СЏ РґР»СЏ РІРІРѕРґР°
 input_field = tk.Entry(root, width=30)
 input_field.grid(row=0, column=0, columnspan=4)
 
-# Функция для добавления символа в поле ввода
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СЃРёРјРІРѕР»Р° РІ РїРѕР»Рµ РІРІРѕРґР°
 def add_to_input(symbol):
     input_field.insert(tk.END, symbol)
 
-# Функция для удаления символа из поля ввода
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЃРёРјРІРѕР»Р° РёР· РїРѕР»СЏ РІРІРѕРґР°
 def delete_from_input():
     input_field.delete(len(input_field.get())-1, tk.END)
 
-# Функция для вычисления результата и вывода его в поле ввода
+# Р¤СѓРЅРєС†РёСЏ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚Р° Рё РІС‹РІРѕРґР° РµРіРѕ РІ РїРѕР»Рµ РІРІРѕРґР°
 def calculate():
     expression = input_field.get()
     try:
         result = eval(expression)
         input_field.delete(0, tk.END)
         input_field.insert(tk.END, str(result))
-        logging.info(f"Результат: {expression} = {result}")
+        logging.info(f"Р РµР·СѓР»СЊС‚Р°С‚: {expression} = {result}")
     except Exception as e:
-        logging.error(f"Ошибка: {str(e)}")
+        logging.error(f"РћС€РёР±РєР°: {str(e)}")
 
-# Создание кнопок
+# РЎРѕР·РґР°РЅРёРµ РєРЅРѕРїРѕРє
 buttons = [
     '7', '8', '9', '/',
     '4', '5', '6', '*',
@@ -52,20 +52,20 @@ for button in buttons:
         col = 0
         row += 1
 
-# Запуск приложения
+# Р—Р°РїСѓСЃРє РїСЂРёР»РѕР¶РµРЅРёСЏ
 root.mainloop()
 
-# Обработка аргументов из командной строки
-parser = argparse.ArgumentParser(description='Калькулятор')
-parser.add_argument('expression', nargs='?', help='Выражение для вычисления')
+# РћР±СЂР°Р±РѕС‚РєР° Р°СЂРіСѓРјРµРЅС‚РѕРІ РёР· РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё
+parser = argparse.ArgumentParser(description='РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ')
+parser.add_argument('expression', nargs='?', help='Р’С‹СЂР°Р¶РµРЅРёРµ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ')
 
 args = parser.parse_args()
 
 if args.expression:
     try:
         result = eval(args.expression)
-        print(f"Результат: {args.expression} = {result}")
-        logging.info(f"Результат: {args.expression} = {result}")
+        print(f"Р РµР·СѓР»СЊС‚Р°С‚: {args.expression} = {result}")
+        logging.info(f"Р РµР·СѓР»СЊС‚Р°С‚: {args.expression} = {result}")
     except Exception as e:
-        print(f"Ошибка: {str(e)}")
-        logging.error(f"Ошибка: {str(e)}")
+        print(f"РћС€РёР±РєР°: {str(e)}")
+        logging.error(f"РћС€РёР±РєР°: {str(e)}")
